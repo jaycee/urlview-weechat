@@ -37,6 +37,10 @@ def urlview(data, buf, args):
         weechat.config_set_plugin("command", "urlview")
     command = weechat.config_get_plugin("command")
 
+    if distutils.spawn.find_executable(command) is None:
+        weechat.prnt(buf, "%s is not installed" % command)
+        return weechat.WEECHAT_RC_ERROR
+
     if command == 'urlscan':
         # urlscan doesn't parse the first line of text that is piped to it; to
         # ensure that we don't miss a url we pad with a newline.
@@ -58,10 +62,6 @@ def urlview(data, buf, args):
 
 
 def main():
-
-    if distutils.spawn.find_executable("urlview") is None:
-        return weechat.WEECHAT_RC_ERROR
-
     if not weechat.register("urlview", "Keith Smiley", "1.0.2", "MIT",
                             "Use urlview or urlscan on the current buffer",
                             "", ""):
