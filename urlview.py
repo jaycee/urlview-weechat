@@ -4,10 +4,11 @@
 # /urlview
 #
 # History:
-# 10-04-2015
-# Version 1.0.0: initial release
-# Version 1.0.1: reverse text passed to urlview
-# Version 1.0.2: remove weechat color from messages
+# 10-04-2015: Version 1.0.0: initial release
+# 12-21-2015: Version 1.0.1: reverse text passed to urlview
+# 12-22-2015: Version 1.0.2: remove weechat color from messages
+# 10-23-2016: Version 1.0.3: allows setting urlscan or urlview to handle urls
+# 02-14-2029: Version 1.0.4: fixes buffer issues when using urlscan
 
 
 import distutils.spawn
