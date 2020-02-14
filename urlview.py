@@ -9,6 +9,7 @@
 # Version 1.0.1: reverse text passed to urlview
 # Version 1.0.2: remove weechat color from messages
 
+
 import distutils.spawn
 import os
 import pipes
@@ -57,15 +58,19 @@ def urlview(data, buf, args):
 
 
 def main():
+
     if distutils.spawn.find_executable("urlview") is None:
         return weechat.WEECHAT_RC_ERROR
 
     if not weechat.register("urlview", "Keith Smiley", "1.0.2", "MIT",
-                            "Use urlview on the current buffer", "", ""):
+                            "Use urlview or urlscan on the current buffer",
+                            "", ""):
         return weechat.WEECHAT_RC_ERROR
 
-    weechat.hook_command("urlview", "Pass the current buffer to urlview", "",
+    weechat.hook_command("urlview",
+                         "Pass the current buffer to urlview or urlscan", "",
                          "", "", "urlview", "")
+
 
 if __name__ == "__main__":
     main()
