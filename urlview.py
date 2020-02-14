@@ -36,7 +36,17 @@ def urlview(data, buf, args):
         weechat.config_set_plugin("command", "urlview")
     command = weechat.config_get_plugin("command")
 
-    text = "\n".join(reversed(lines))
+    if command == 'urlscan':
+        # urlscan doesn't parse the first line of text that is piped to it; to
+        # ensure that we don't miss a url we pad with a newline.
+        lines.insert(0, '\n')
+        text = "\n".join(lines)
+    else:
+        # Reverse lines when using urlview; w/o the context that urlscan
+        # provides, it's easier to find the correct url if the most recent one
+        # in chat is the one that's at the top of the list.
+        text = "\n".join(reversed(lines))
+
     response = os.system("echo %s | %s" % (pipes.quote(text), command))
     if response != 0:
         weechat.prnt(buf, "No URLs found")
