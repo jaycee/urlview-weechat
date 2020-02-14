@@ -21,5 +21,10 @@ wget https://raw.githubusercontent.com/keith/urlview-weechat/master/urlview.py ~
 cd ~/.weechat/python/autoload && ln -s ../urlview.py .
 ```
 
+## Configuration
+
+By default this script uses urlview to handle urls. To use urlscan, you can
+set `plugins.var.python.urlview.command` to "urlscan".
+
 This is a python rewrite of [this ruby
 plugin](https://weechat.org/files/scripts/unofficial/urlview.rb)
