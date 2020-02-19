@@ -26,5 +26,8 @@ cd ~/.weechat/python/autoload && ln -s ../urlview.py .
 By default this script uses urlview to handle urls. To use urlscan, you can
 set `plugins.var.python.urlview.command` to "urlscan".
 
+To have email addresses removed before url parsing happens, you can set
+`plugins.var.python.urlview.noemail` to true.
+
 This is a python rewrite of [this ruby
 plugin](https://weechat.org/files/scripts/unofficial/urlview.rb)
