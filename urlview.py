@@ -9,7 +9,7 @@
 # 12-22-2015: Version 1.0.2: remove weechat color from messages
 # 10-23-2016: Version 1.0.3: allows setting urlscan or urlview to handle urls
 # 02-14-2020: Version 1.0.4: fixes buffer issues when using urlscan
-
+# 02-19-2020: Version 1.0.5: adds optional email filtering for urls
 
 
 import distutils.spawn
