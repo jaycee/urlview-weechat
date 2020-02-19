@@ -11,22 +11,30 @@
 # 02-14-2020: Version 1.0.4: fixes buffer issues when using urlscan
 
 
+
 import distutils.spawn
 import os
 import pipes
+import re
 import weechat
 
 
 def urlview(data, buf, args):
+    if not weechat.config_is_set_plugin("noemail"):
+        weechat.config_set_plugin("noemail", "false")
+    noemail = weechat.config_get_plugin("noemail")
+
     infolist = weechat.infolist_get("buffer_lines", buf, "")
     lines = []
+    email_filter = re.compile(
+        r"(\b[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\b)")
     while weechat.infolist_next(infolist) == 1:
-        lines.append(
-            weechat.string_remove_color(
-                weechat.infolist_string(infolist, "message"),
-                ""
-            )
-        )
+        line = weechat.string_remove_color(
+            weechat.infolist_string(infolist, "message"), "")
+        if noemail != "false":
+            line = email_filter.sub('', line)
+        lines.append(line)
+
 
     weechat.infolist_free(infolist)
 
